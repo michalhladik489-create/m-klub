@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base target="_blank">
+<title>M-klub Vysoké Mýto</title>
+<meta id="md" name="description" content="M-klub Vysoké Mýto — koncerty, divadlo, kino, kurzy a besedy. Program, kalendář akcí a online vstupenky.">
+<meta property="og:title" content="M-klub Vysoké Mýto"><meta property="og:type" content="website"><meta property="og:locale" content="cs_CZ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#ecebe4;--ink:#0a0a0a;--acc:#7a04e1;--bg:var(--paper);--fg:var(--ink);--lf:0;--lfi:1;--g:clamp(.75rem,2vw,1.5rem);--px:clamp(1rem,3vw,2.5rem);--vh:calc(100svh - 56px - env(safe-area-inset-top,0px));color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0b0b0b;--ink:#ecebe4;--lf:1;--lfi:0;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0b0b0b;--ink:#ecebe4;--lf:1;--lfi:0;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(56px + env(safe-area-inset-top,0px))}
+html.home{scroll-snap-type:y proximity}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:400 clamp(.9rem,.85rem + .25vw,1.05rem)/1.5 Archivo,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:25}
+a{color:inherit;text-decoration:none}
+.m,.b,.hd nav a,.wd,.c{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;text-transform:uppercase;letter-spacing:.06em}
+.m{font-size:.72rem;font-weight:500;line-height:1.4}
+.inv{--bg:var(--ink);--fg:var(--paper);--lf:var(--lfi);background:var(--bg);color:var(--fg)}
+.acc{--bg:var(--acc);--fg:#0a0a0a;background:var(--bg);color:#fff}
+.lgi{height:30px;width:auto;display:block;filter:invert(var(--lf))}
+section{height:var(--vh);padding:clamp(.9rem,2.2vw,2rem) var(--px);border-top:1px solid var(--fg);display:flex;flex-direction:column;gap:clamp(.6rem,1.6vw,1.25rem);overflow:hidden;scroll-snap-align:start}
+footer{padding:clamp(1.5rem,4vw,3rem) var(--px);border-top:1px solid var(--fg)}
+.g{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g)}
+.fill{flex:1;min-height:0;grid-template-rows:minmax(0,1fr)}
+/* header */
+.hd{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:56px;display:flex;background:var(--bg);border-bottom:1px solid var(--fg)}
+.logo{display:flex;align-items:center;padding:0 var(--px);font-weight:900;font-size:1.35rem;letter-spacing:-.04em;border-right:1px solid var(--fg)}
+.hd nav{display:flex;flex:1;overflow-x:auto;scrollbar-width:none}
+.hd nav a{display:flex;align-items:center;white-space:nowrap;padding:0 .9rem;font-size:.66rem;font-weight:500;border-right:1px solid var(--fg);transition:background .25s,color .25s}
+.hd nav a:hover,.hd nav a.on{background:var(--fg);color:var(--bg)}
+.tix{display:flex;align-items:center;gap:.5rem;padding:0 var(--px);background:var(--acc);color:#fff;font-size:.72rem;font-weight:700;border-left:1px solid var(--fg);transition:background .25s,color .25s}
+.tix:hover{background:var(--fg);color:var(--bg)}
+.menu{display:none;padding:0 1rem;background:none;border:0;border-left:1px solid var(--fg);color:inherit;font:700 .72rem "JetBrains Mono",monospace;text-transform:uppercase}
+/* buttons */
+.b{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.05rem;border:1px solid var(--fg);background:none;color:inherit;font-size:.74rem;font-weight:700;line-height:1;cursor:pointer;transition:background .25s,color .25s}
+.b span{display:inline-block;transition:transform .3s}
+.b:hover,.b.on{background:var(--fg);color:var(--bg)}.b:hover span{transform:translateX(5px)}
+.b.p{background:var(--acc);color:#fff}.b.p:hover{background:var(--fg);color:var(--bg)}
+.acc .b{color:#fff}.acc .b.p{background:#0a0a0a}.acc .b.p:hover{background:transparent}
+.row{display:flex;flex-wrap:wrap;gap:.5rem}
+/* hero */
+.hero{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;column-gap:var(--g);padding-bottom:0;border-top:0}
+.top{grid-column:1/-1;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-bottom:.6rem;border-bottom:1px solid var(--fg)}
+.hrow{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--g);min-height:0;padding-bottom:clamp(.6rem,1.5vw,1.2rem)}
+.lead{grid-column:1/4;align-self:end;display:flex;flex-direction:column;gap:1rem}
+.lead p{font-size:1.02rem;max-width:32ch}
+.hart{grid-column:4/-1;position:relative;min-height:0;border:1px solid var(--fg);overflow:hidden;background:#0a0a0a}
+.hart i,.art i,.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.hart:hover i,.hart:hover img{transform:scale(1.05)}
+.hart>.m{position:absolute;color:#ecebe4}
+.hart .cnt{position:absolute;right:0;bottom:0;background:var(--bg);color:var(--fg);padding:.5rem 1rem;display:flex;align-items:baseline;gap:.8rem}
+.cnt b{font-size:clamp(2.5rem,min(9vw,12svh),8rem);font-weight:900;line-height:.85;letter-spacing:-.06em}
+.tk{grid-column:1/-1;margin:0 calc(var(--px)*-1);overflow:hidden;white-space:nowrap;background:var(--acc);color:#fff;padding:.55rem 0}
+.tk div{display:inline-block;animation:tk 40s linear infinite}
+.tk span{font-weight:900;font-size:clamp(.9rem,2vw,1.4rem);letter-spacing:-.02em;text-transform:uppercase;padding-right:1.5rem}
+@keyframes tk{to{transform:translateX(-50%)}}
+.p1{background:repeating-linear-gradient(90deg,#0a0a0a 0 14px,var(--acc) 14px 28px)}
+.p2{background:conic-gradient(#0a0a0a 25%,#ecebe4 0 50%,#0a0a0a 0 75%,#ecebe4 0) 0 0/64px 64px}
+.p3{background:linear-gradient(var(--acc),var(--acc)) 72% 22%/42% 52% no-repeat,linear-gradient(90deg,rgba(236,235,228,.22) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(rgba(236,235,228,.22) 1px,transparent 1px) 0 0/32px 32px,#0a0a0a}
+.p4{background:repeating-linear-gradient(135deg,var(--acc) 0 3px,transparent 3px 16px),#ecebe4}
+.p5{background:linear-gradient(#0a0a0a,#0a0a0a) 14% 14%/56% 56% no-repeat,linear-gradient(var(--acc),var(--acc)) 40% 40%/56% 56% no-repeat,#ecebe4}
+h2{font-weight:900;font-size:clamp(2rem,min(7vw,11svh),6rem);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}
+.sh{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ctl{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+/* slider */
+.trk{flex:1;min-height:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-top:1px solid var(--fg)}
+.ev{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:minmax(0,1fr);column-gap:var(--g);padding-top:clamp(.6rem,1.6vw,1.2rem);min-height:0}
+.ev .art{grid-column:1/6;display:block;position:relative;overflow:hidden;border:1px solid var(--fg);min-height:0}
+.ev .bd{grid-column:6/13;display:flex;flex-direction:column;gap:clamp(.5rem,1.4svh,1rem);min-height:0;justify-content:space-between}
+.ev:nth-child(even) .art{grid-column:8/13;grid-row:1}.ev:nth-child(even) .bd{grid-column:1/8;grid-row:1}
+.ev:hover .art i,.ev:hover .art img,.card:hover .art i,.card:hover .art img{transform:scale(1.06)}
+.art .m{position:absolute;top:.6rem;left:.6rem;background:var(--bg);color:var(--fg);padding:.25rem .5rem}
+.art .num{position:absolute;left:0;bottom:0;background:var(--bg);color:var(--fg);padding:.3rem .9rem .4rem;font-weight:900;font-size:clamp(2.8rem,min(9vw,14svh),8rem);line-height:.85;letter-spacing:-.06em}
+.num small{display:block;font:500 .72rem "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;margin-top:.3rem}
+.meta{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-bottom:.6rem;border-bottom:1px solid var(--fg)}
+.now{background:var(--acc);color:#fff;padding:0 .4rem}
+h3{font-weight:800;font-size:clamp(1.3rem,min(4.2vw,7svh),3.6rem);line-height:.95;letter-spacing:-.035em;text-transform:uppercase;transition:letter-spacing .4s}
+.ev:hover h3,.card:hover h3{letter-spacing:-.02em}
+.bd p{max-width:46ch;overflow:hidden}
+dl{display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--fg)}
+dt,dd{padding:.45rem 0;border-bottom:1px solid var(--fg)}dt{padding-right:2rem;opacity:.65}
+.emp{padding:2rem 0}
+.news .art{grid-column:1/6;position:relative;overflow:hidden;border:1px solid var(--fg);min-height:0}
+.news .tx{grid-column:6/-1;display:flex;flex-direction:column;gap:1.25rem;justify-content:center}
+.news h2{font-size:clamp(2.2rem,min(7vw,13svh),6.5rem)}
+/* calendar */
+.cl{grid-column:1/6;display:flex;flex-direction:column;gap:.8rem;min-height:0}
+#day{flex:1;min-height:0;overflow:auto;border-top:1px solid var(--fg);padding-top:.7rem;display:flex;flex-direction:column;gap:.6rem}
+.di{display:flex;flex-direction:column;gap:.35rem;padding-bottom:.6rem;border-bottom:1px solid var(--fg)}
+.di b{font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:1.05rem;line-height:1.1}
+.cwrap{grid-column:6/-1;min-height:0}
+#cal{height:100%;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:1fr;gap:1px;background:var(--fg);border:1px solid var(--fg)}
+#cal .wd{grid-row:1}
+.wd,.c{background:var(--bg);font-size:.7rem;padding:.4rem;color:inherit;border:0;text-align:left;font-weight:700}
+.wd{opacity:.6;font-weight:500}
+.c{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:0;transition:background .25s,color .25s}
+.c em{font-style:normal;font-size:.55rem;letter-spacing:.1em;line-height:1}
+button.c{cursor:pointer}
+.c.on{background:var(--acc);color:#fff}button.c:hover{background:var(--fg);color:var(--bg)}
+.c.sel{outline:3px solid var(--fg);outline-offset:-3px}
+.c.td::after{content:"";position:absolute;right:.4rem;top:.4rem;width:.45rem;height:.45rem;background:currentColor}
+.pl{justify-content:center}
+.pl h2{font-size:clamp(2.6rem,min(13vw,26svh),13rem);line-height:.84}
+/* pages */
+.pg{padding:clamp(1rem,2.5vw,2rem) var(--px) clamp(2.5rem,6vw,5rem);min-height:var(--vh)}
+.crumb{display:flex;gap:.6rem;flex-wrap:wrap;border-bottom:1px solid var(--fg);padding-bottom:.6rem}
+.crumb a:hover{text-decoration:underline}
+.pg>h1{font-weight:900;font-size:clamp(2.4rem,9vw,8rem);line-height:.86;letter-spacing:-.05em;text-transform:uppercase;margin:clamp(.8rem,2vw,1.6rem) 0 clamp(1.2rem,3vw,2.5rem);overflow-wrap:anywhere}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--fg);border:1px solid var(--fg)}
+.card{background:var(--bg);display:flex;flex-direction:column}
+.card .art{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;border-bottom:1px solid var(--fg)}
+.card .cb{padding:1rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.card h3{font-size:1.45rem}
+.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.det{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--g)}
+.det .art{grid-column:1/7;position:relative;overflow:hidden;border:1px solid var(--fg);aspect-ratio:4/5;max-height:80svh}
+.det .bd2{grid-column:7/-1;display:flex;flex-direction:column;gap:1.1rem}
+.det h1{font-weight:900;font-size:clamp(2rem,5vw,4.5rem);line-height:.92;letter-spacing:-.045em;text-transform:uppercase;overflow-wrap:anywhere}
+.prose{max-width:68ch;display:flex;flex-direction:column;gap:.9rem}
+.prose h2{font-size:clamp(1.4rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1;margin-top:1.2rem}
+.cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:1px;background:var(--fg);border:1px solid var(--fg);margin-top:1rem}
+.cols>div{background:var(--bg);padding:1rem;display:flex;flex-direction:column;gap:.3rem}
+.cols b{font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:1.15rem;line-height:1.05}
+.tbl{width:100%;max-width:760px;border-collapse:collapse}.tbl th,.tbl td{border:1px solid var(--fg);padding:.6rem;text-align:left}.tbl{overflow-x:auto;display:block}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:1px;background:var(--fg);border:1px solid var(--fg)}
+.gal button{border:0;background:var(--bg);aspect-ratio:1;padding:0;cursor:zoom-in;overflow:hidden}
+.gal img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}.gal button:hover img{transform:scale(1.06)}
+#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:1rem;cursor:zoom-out}
+#lb img{max-width:100%;max-height:100%}
+.quote{border-left:4px solid var(--acc);padding-left:1rem;font-size:clamp(1.2rem,2.6vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.quote small{display:block;font:500 .72rem "JetBrains Mono",monospace;letter-spacing:.06em;text-transform:uppercase;margin-top:.4rem;opacity:.7}
+/* admin */
+.tabs{margin-bottom:1rem}
+.st{min-height:1.4rem;margin-bottom:.8rem}
+.ad{display:grid;grid-template-columns:minmax(240px,1fr) minmax(0,1.5fr);gap:var(--g);align-items:start}
+.lst{border:1px solid var(--fg);max-height:70svh;overflow:auto}
+.lst a{display:flex;justify-content:space-between;gap:.6rem;padding:.65rem .8rem;border-bottom:1px solid var(--fg);font-size:.9rem}
+.lst a:hover,.lst a.on{background:var(--fg);color:var(--bg)}
+.lst a.past{opacity:.5}
+.fm{display:flex;flex-direction:column;gap:.8rem;border:1px solid var(--fg);padding:1rem}
+.fm h2{font-size:1.6rem;margin-bottom:.2rem}
+.fm input,.fm select,.fm textarea{display:block;width:100%;margin-top:.25rem;padding:.6rem;border:1px solid var(--fg);background:var(--bg);color:var(--fg);font:400 .95rem Archivo,Arial,sans-serif;text-transform:none;letter-spacing:0}
+.pimg{max-width:100%;max-height:160px;display:block;margin:.4rem 0;border:1px solid var(--fg)}
+.lgprev{background:#9a9a9a;padding:1rem;display:inline-block;margin:.4rem 0}.lgprev img{height:44px;display:block}
+.agal{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.6rem;margin-top:1rem}
+.agal div{display:flex;flex-direction:column;gap:.3rem}.agal img{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--fg)}
+#pbar{position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--acc);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem var(--px) calc(.7rem + env(safe-area-inset-bottom,0px));border-top:2px solid #0a0a0a}
+#pbar .b{background:#fff;color:#0a0a0a;border-color:#0a0a0a}
+/* footer */
+.fg{display:grid;grid-template-columns:repeat(12,1fr);gap:1.5rem var(--g)}
+.f1{grid-column:1/7}.f1 .fb{display:block;font-weight:900;font-size:clamp(2rem,6vw,4.5rem);line-height:.9;letter-spacing:-.05em;text-transform:uppercase;margin-bottom:.8rem}
+.f1 .fb .lgi{height:clamp(36px,6vw,64px)}
+.f2{grid-column:8/-1;display:flex;flex-direction:column;gap:1rem}
+.fn{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;border-top:1px solid var(--fg);padding-top:1rem}
+.fn a:hover{text-decoration:underline}
+.pt{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--fg);border:1px solid var(--fg)}
+.pt a{background:var(--bg);padding:.7rem 1rem;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:clamp(.8rem,1.8vw,1.25rem);transition:background .25s,color .25s}
+.pt a:hover{background:var(--fg);color:var(--bg)}
+.cr{grid-column:1/-1;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;opacity:.7}
+@media(max-width:900px){
+.hd nav{display:none;position:absolute;top:56px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--fg);max-height:calc(100svh - 56px);overflow:auto}
+.hd.open nav{display:flex}.hd nav a{padding:1rem var(--px);border-right:0;border-bottom:1px solid var(--fg);font-size:.78rem}
+.menu{display:block}.tix{margin-left:auto}
+.hrow{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;row-gap:.8rem}
+.hart{grid-column:1;grid-row:1}.lead{grid-column:1;grid-row:2;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap}.lead p{display:none}
+.ev,.ev:nth-child(even){grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;row-gap:.7rem}
+.ev .art,.ev:nth-child(even) .art{grid-column:1;grid-row:1}.ev .bd,.ev:nth-child(even) .bd{grid-column:1;grid-row:2}
+.bd p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.bd dl{display:none}
+.news.g,.cg{grid-template-columns:1fr;grid-template-rows:minmax(0,.6fr) auto}
+.news .art,.news .tx,.cl,.cwrap{grid-column:1}
+.cg{grid-template-rows:auto minmax(0,1fr)}
+#day{max-height:20svh}.cl{margin-bottom:.8rem}
+.det .art,.det .bd2{grid-column:1/-1}.det .art{aspect-ratio:4/3}
+.ad{grid-template-columns:1fr}.lst{max-height:34svh}
+.f1,.f2{grid-column:1/-1}
+}
+@media(max-width:560px){.hd .tix em{display:none}.b{padding:.7rem .8rem}.logo{padding:0 .8rem}.pt a{padding:.5rem;font-size:.72rem}.news .tx p{display:none}.lgi{height:24px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:60;background:var(--acc);color:#fff;padding:.8rem 1rem;border:0;font:700 .8rem "JetBrains Mono",monospace}.skip:focus{left:0}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.inv :focus-visible,.acc :focus-visible{outline-color:currentColor}
+#v:focus{outline:none}
+.ctrl{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--g);margin-bottom:1rem}
+.ctrl input,.ctrl select{display:block;width:100%;margin-top:.25rem;padding:.6rem;border:1px solid var(--fg);background:var(--bg);color:var(--fg);font:400 .95rem Archivo,Arial,sans-serif;text-transform:none;letter-spacing:0}
+.sold{border-style:dashed;opacity:.7;cursor:default}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fe{color:var(--acc);min-height:1.2rem;font-weight:700}
+.ok{border:2px solid var(--acc)}.ok pre{white-space:pre-wrap}
+.cc{position:fixed;left:0;right:0;bottom:0;z-index:48;background:var(--bg);color:var(--fg);border-top:2px solid var(--fg);padding:1rem var(--px) calc(1rem + env(safe-area-inset-bottom,0px));display:flex;gap:1rem;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.cc p{max-width:70ch;font-size:.9rem}
+.ts{position:fixed;left:50%;bottom:5rem;transform:translateX(-50%);z-index:60;background:var(--fg);color:var(--bg);padding:.7rem 1rem}
+.lbx{position:absolute;top:1rem;right:1rem;background:var(--bg)}.lbn{position:absolute;top:50%;transform:translateY(-50%);background:var(--bg)}.lbn.l{left:1rem}.lbn.r{right:1rem}.lbc{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);color:#fff}
+.hd nav a{padding:0 .75rem}
+.af{position:fixed;right:1rem;bottom:5rem;z-index:44}
+@media(max-width:700px){.ctrl{grid-template-columns:1fr}}
+.hero{position:relative}
+.hero>*:not(.hbg){position:relative;z-index:1}
+.hero>.hbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;z-index:0;filter:grayscale(1)}
+.fx{grid-column:1/-1;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:center;-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+.fxl{position:relative;flex:none;width:100%}
+.fxl>*{position:absolute;left:50%;top:50%;white-space:nowrap;max-width:none}
+.fxl>span,.fxl>h1,.fxm{font-weight:900;font-stretch:125%;letter-spacing:-.03em;text-transform:uppercase;line-height:1;margin:0;display:block}
+.fxl>span,.fxl>h1{top:calc(50% + .05em);transform:translate(-50%,-50%)}
+.fxl.o>span{color:transparent;-webkit-text-stroke:max(1.5px,.014em) var(--fg)}
+.fxl>img{filter:invert(var(--lf));transform:translate(-50%,-50%)}
+.fxm{position:absolute;visibility:hidden}
+.hero .hrow{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;padding-bottom:clamp(.6rem,1.5vw,1.2rem)}
+.hero .hrow .lead{flex-direction:column}
+</style>
+</head>
+<body>
+<button class="skip" id="sk">Přeskočit na obsah</button>
+<header class="hd" id="hd">
+  <a class="logo" href="#domu" aria-label="M-klub — úvodní strana"><span id="lg"></span></a>
+  <nav id="nv" aria-label="Hlavní menu">
+    <a href="#program">Program</a><a href="#program.koncerty">Koncerty</a><a href="#program.divadlo">Divadlo</a><a href="#program.kino">Kino</a><a href="#program.kurzy">Kurzy</a><a href="#program.besedy-a-prednasky">Besedy</a><a href="#kalendar">Kalendář</a><a href="#aktualne">Aktuálně</a><a href="#fotogalerie">Fotogalerie</a><a href="#prostory">Prostory</a><a href="#o-nas">O nás</a><a href="#kontakty">Kontakty</a><a href="#vylep-plakatu">Výlep plakátů</a><a href="#reference">Reference</a><a href="#admin" id="al" hidden>Admin</a>
+  </nav>
+  <a class="tix m" id="tx" href="http://www.mklub.cz/tickets/"><em style="font-style:normal">Online&nbsp;</em>vstupenky ↗</a>
+  <button class="menu" id="mb" aria-label="Menu" aria-expanded="false" aria-controls="nv">Menu</button>
+</header>
+<main id="v" tabindex="-1"></main>
+<footer class="inv">
+  <div class="fg">
+    <div class="f1"><span class="fb" id="flg"></span>
+      <p>Litomyšlská 72<br>566 01 Vysoké Mýto<br><a href="tel:465420420">tel.: 465 420 420</a><br><a href="mailto:mklub@mklub.cz">mklub@mklub.cz</a></p></div>
+    <div class="f2">
+      <span class="m">Sledujte nás</span>
+      <div class="row">
+        <a class="b" href="https://www.facebook.com/profile.php?id=61575567497951">Facebook <span>↗</span></a>
+        <a class="b" href="https://www.instagram.com/mklub_vysoke_myto?igsh=a3FxdzBkeHp5cHRt">Instagram <span>↗</span></a>
+        <a class="b" href="https://www.youtube.com/user/MklubVM#p/u">YouTube <span>↗</span></a>
+        <a class="b" href="http://bandzone.cz/klub/mklubvysokemyto">Bandzone <span>↗</span></a>
+        <a class="b" href="https://goo.gl/maps/sVgNCXQQx4Q2">Mapa <span>↗</span></a>
+      </div>
+      <div class="row"><a class="b p" href="mailto:mklub@mklub.cz?subject=Odebírat%20novinky">Odebírat novinky <span>→</span></a><a class="b" href="http://vmkulturni.cz">Vysokomýtská kulturní <span>↗</span></a></div>
+    </div>
+    <div class="fn m" id="fn"></div>
+    <div class="pt">
+      <a href="http://www.vysoke-myto.cz">Město Vysoké Mýto</a><a href="http://www.ecos.cz/">ECOS</a><a href="https://www.poda.cz/">PODA</a>
+      <a href="http://www.tvarmetal.cz/">Tvar Metal</a><a href="http://www.iveco.com/czech/Pages/HomePage.aspx">IVECO</a><a href="http://www.vodovody-vm.cz/">VaK</a>
+      <a href="http://www.elkovalenta.cz/">Euronics</a><a href="https://www.koma-vm.cz/cs">KOMA</a><a href="http://www.my-concept.cz/">Concept</a>
+    </div>
+    <div class="cr m"><span>Copyright © M-klub</span><span>Původní grafický návrh © rsdialog.cz</span><span>Redesign — koncept</span><button class="b" data-cc="reset" style="padding:.4rem .6rem">Nastavení cookies</button></div>
+  </div>
+</footer>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Fotografie" hidden></div>
+<div id="cc" class="cc" role="dialog" aria-label="Souhlas s cookies" hidden><p>Web používá nezbytné úložiště prohlížeče pro svou funkci. S vaším souhlasem může načíst i měření návštěvnosti (Google Analytics). Souhlas můžete kdykoli změnit v patičce.</p><div class="row"><button class="b" data-cc="min">Pouze nezbytné</button><button class="b p" data-cc="all">Přijmout vše</button></div></div>
+<a id="af" class="b p af" href="#admin" hidden>Admin ✎</a>
+<div id="pbar" hidden><span class="m">Neuložené změny</span><button class="b" id="pu">Publikovat změny</button></div>
+
+<script type="application/json" id="data">{"site":{"logo":"","hero":"","email":"","tickets":"","ga":""},"gallery":[],"texts":{},"cats":["Koncerty","Divadlo","Kino","Kurzy","Besedy a přednášky","Ostatní akce","Pronájem"],"news":[
+{"id":"n1","iso":"","title":"Startujeme pravidelné M-kvízy!","desc":"Přihlašte se na nové hospodské kvízy v M-klubu. Pořádáme ve čtvrtek jednou za 14 dní!","img":""}
+],"spaces":[
+{"id":"s1","title":"Klubová scéna","place":"Litomyšlská 71, 566 01 Vysoké Mýto","cap":"","desc":"Univerzální prostor pro koncerty a další aktivity. Na Klubovce můžete navštívit akci nebo si ji pronajmout pro vlastní program.","contact":"Pavel Kopp, tel. 465 420 420, 739 062 915","img":""},
+{"id":"s2","title":"Společenský sál","place":"M-klub, Litomyšlská 71, 566 01 Vysoké Mýto","cap":"","desc":"Sál v budově M-klubu pro společenské akce.","contact":"Pavel Kopp, tel. 465 420 420, 739 062 915","img":""},
+{"id":"s3","title":"Šemberovo divadlo","place":"Komenského 281, 566 01 Vysoké Mýto","cap":"","desc":"V sále Šemberova divadla pravidelně probíhají filmová, divadelní a koncertní představení. Vstupenky se prodávají půl hodiny před začátkem představení.","contact":"Pavel Kopp, tel. 465 420 420, 739 062 915","img":""},
+{"id":"s4","title":"(M)BAR","place":"Litomyšlská 71, 566 01 Vysoké Mýto","cap":"","desc":"(M)BAR je otevřen pravidelně každý týden: pátek a sobota 19:00–24:00. Vedoucí baru David Řehák.","contact":"David Řehák, rezervace tel. 731 269 447","img":""},
+{"id":"s5","title":"Amfiteátr M-KLUBU","place":"Vysoké Mýto","cap":"","desc":"V letních měsících se v Amfiteátru M-KLUBU pořádají akce.","contact":"Pavel Kopp, tel. 465 420 420, 739 062 915","img":""}
+],"events":[
+{"id":"e1","iso":"2026-10-21","t":"19:00","c":"Divadlo","title":"ADF – Peter Quilter: Tak já letim!","desc":"Vše se dá přežít s nadhledem, sebeironií a humorem.","price":"580 / 560 / 540 Kč","place":"Šemberovo divadlo","av":"ok","url":"","tk":"","img":""},
+{"id":"e2","iso":"2026-11-06","t":"19:00","c":"Koncerty","title":"Lucie Bílá – recitál","desc":"Recitál několikanásobné zlaté slavice Lucie Bílé za klavírního doprovodu Petra Maláska.","price":"1590 / 1570 / 1550 Kč","place":"Vysoké Mýto","av":"ok","url":"","tk":"","img":""},
+{"id":"e3","iso":"2026-11-14","t":"17:00","c":"Besedy a přednášky","title":"Snow Film Fest | Háčkova přednáška „SNOW“","desc":"1. ročník Snow film festu ve Vysokém Mýtě. Součástí bude přednáška horolezce, skialpinisty a dobrodruha Zdeňka „Háčka“ Háka nazvaná SNOW.","price":"předprodej 200 Kč / na místě 250 Kč","place":"Vysoké Mýto","av":"ok","url":"","tk":"","img":""},
+{"id":"e4","iso":"2026-11-19","t":"20:00","c":"Divadlo","title":"LiStOVáNí: Deník lehké holky (Celeste Will)","desc":"Cyklus scénických čtení aneb knížky na jevišti. Hrají: Daniela Šišková a Jakub Koudela.","price":"předprodej 190 Kč / na místě 240 Kč","place":"Vysoké Mýto","av":"ok","url":"","tk":"","img":""},
+{"id":"e5","iso":"2026-11-22","t":"19:00","c":"Koncerty","title":"Dan Bárta & Illustratosphere & Lash & Grey","desc":"Stříbrná svatba tour 2026. Exkluzivní koncert v M-klubu!","price":"550 Kč (prvních 100 ks) / 670 Kč (dalších 100 ks) / 770 Kč (posledních 100 ks)","place":"M-klub","av":"ok","url":"","tk":"","img":""}
+]}</script>
+<script>
+const $=s=>document.querySelector(s),T0="http://www.mklub.cz/tickets/";
+const S=JSON.parse($("#data").textContent);S.site=S.site||{};S.texts=S.texts||{};["events","news","gallery","spaces"].forEach(k=>S[k]=S[k]||[]);
+S.cats=S.cats||["Koncerty","Divadlo","Kino","Kurzy","Besedy a přednášky","Ostatní akce","Pronájem"];
+const WD=["neděle","pondělí","úterý","středa","čtvrtek","pátek","sobota"],MO=["led","úno","bře","dub","kvě","čvn","čvc","srp","zář","říj","lis","pro"],
+MN=["Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec"];
+const today=new Date().toLocaleDateString("sv-SE"),t0=Date.now();
+let admin=false,cur=(location.hash||"").slice(1)||"domu",sd,cy,cm,imgv="",dirt=false,Q="",DF="",SO="asc",li=0;
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const slug=s=>norm(s).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const catBy=sl=>S.cats.find(c=>slug(c)===sl);
+const rich=s=>String(s??"").split(/\n{2,}/).map(b=>b.trim()).filter(Boolean).map(b=>b.startsWith("## ")?`<h2>${esc(b.slice(3))}</h2>`:`<p>${esc(b).replace(/\n/g,"<br>")}</p>`).join("");
+const P=iso=>{const d=new Date(iso+"T12:00");return isNaN(d)?{d:"",m:"",y:"",w:""}:{d:String(d.getDate()).padStart(2,"0"),m:MO[d.getMonth()],y:d.getFullYear(),w:WD[d.getDay()]}};
+const srt=a=>a.slice().sort((x,y)=>(x.iso+x.t).localeCompare(y.iso+y.t));
+const up=()=>srt(S.events).filter(e=>e.iso>=today);
+const pic=(src,i)=>src?`<img src="${esc(src)}" alt="" loading="lazy" decoding="async" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'p1'}))">`:`<i class="p${(i||0)%5+1}"></i>`;
+const ix=e=>srt(S.events).indexOf(e);
+const tk=e=>esc(e.tk||S.site.tickets||T0);
+const tkb=(e,l)=>e.av==="sold"?`<span class="b sold">Vyprodáno</span>`:e.av==="soon"?`<span class="b sold">Prodej připravujeme</span>`:`<a class="b p" href="${tk(e)}">${l||"Koupit vstupenky"} <span>→</span></a>`;
+const avt=e=>e.av==="sold"?"Vyprodáno":e.av==="soon"?"Prodej vstupenek připravujeme":"Vstupenky v online prodeji";
+const crumb=(...a)=>`<div class="crumb m"><a href="#domu">Domů</a>${a.map(x=>"<span>/</span>"+x).join("")}</div>`;
+const pgv=(c,t,body)=>`<div class="pg">${crumb(...c)}<h1>${t}</h1>${body}</div>`;
+const tx=k=>S.texts[k]??DEF[k];
+const DEF={
+about:"VYSOKOMÝTSKÁ KULTURNÍ o. p. s. — středisko M-klub. Obecně prospěšnou společnost zřídilo Město Vysoké Mýto k 1. 8. 2012. Zajišťuje kulturní, pořadatelskou a agenturní činnost pro obyvatele města a regionu a propaguje místní kulturu. Vytváří také podmínky pro zájmové spolky a neprofesionální kulturu.\n\n## Co děláme\n\nV čele společnosti stojí ředitel, kterého jmenuje starosta města. Úsek mimoškolního vzdělávání připravuje jazykové, hudební a taneční kurzy, přednášky, besedy a školení. Dramaturgie nabízí divadlo, film, koncerty a taneční večery a odpoledne.\n\nSpolupracujeme s divadelním spolkem Šembera, pěveckým sborem Otakar a loutkovým divadlem Srdíčko. V létě pořádáme akce v Amfiteátru M-klubu a celoročně pronajímáme všechny budovy. Součástí práce jsou i celoměstské, regionální a celostátní akce s mezinárodní účastí.",
+rent:"Za výhodných podmínek pronajmeme M-klub a Šemberovo divadlo. Konkrétní ceny pronájmů vám sdělíme na dotaz. Kontaktní osoba: Pavel Kopp, tel. 465 420 420, 739 062 915.",
+hours:"Kancelář (září–červen): pondělí a středa 8:00–16:30\n\nKancelář (červenec–srpen): středa 8:00–16:30\n\n(M)BAR: pátek a sobota 19:00–24:00",
+posters:"Zajistěte si viditelnost své akce jednoduše a online. Výlep zajišťuje Vysokomýtská kulturní, o. p. s. na 17 plochách ve městě.\n\n## Výlepové dny\n\nÚterý a čtvrtek (jen pracovní dny mimo státní svátky). Plakáty musí být doručeny nejpozději den před výlepem. Objednávejte alespoň 3 pracovní dny předem. Přijímáme minimálně 17 plakátů a doporučujeme přidat 10 % kusů navíc na opravy.\n\n## Jak postupovat\n\n1) Vyplňte elektronický objednávkový formulář.\n2) Počkejte na potvrzení e-mailem (do 3 pracovních dnů), objednávka platí až po něm.\n3) Doručte plakáty označené číslem objednávky do kanceláře M-klubu (Litomyšlská 71) nebo do označené schránky vlevo za mřížemi u vchodu.\n4) Výlep provedeme v nejbližší výlepový den.\n\n## Upozornění\n\nPlakáty bez čísla objednávky nepřijímáme. Nevylepujeme plakáty s nenávistným, rasistickým či politickým obsahem a vyhrazujeme si právo výlep odmítnout.\n\n## Odpovědná osoba\n\nPetra Till — tel. 465 420 420 / 603 194 029"};
+const TXN={about:"O nás",rent:"Prostory — úvodní text",hours:"Otevírací doba (Kontakty)",posters:"Výlep plakátů"};
+
+/* ---------- views ---------- */
+const evh=(e,i)=>{const p=P(e.iso),n=String(i+1).padStart(2,"0");return `<article class="ev"><a class="art" href="#akce.${e.id}" tabindex="-1" aria-hidden="true">${pic(e.img,ix(e))}<span class="m">Fig. ${n}</span><div class="num">${p.d}<small>${p.m} ${p.y}</small></div></a>
+<div class="bd"><div class="meta m"><span>Track ${n}</span><span>${esc(e.c)}</span><span>${p.w} · ${esc(e.t)}${e.iso===today?' <b class="now">Dnes</b>':''}</span></div>
+<h3><a href="#akce.${e.id}">${esc(e.title)}</a></h3><p>${esc(e.desc)}</p>
+<dl class="m"><dt>Místo</dt><dd>${esc(e.place)}</dd><dt>Vstupné</dt><dd>${esc(e.price)}</dd></dl>
+<div class="row">${tkb(e)}<a class="b" href="#akce.${e.id}">Více informací <span>→</span></a>${admin?`<a class="b" href="#admin.events.${e.id}">Upravit</a>`:""}</div></div></article>`};
+const card=e=>{const p=P(e.iso);return `<article class="card"><a class="art" href="#akce.${e.id}" tabindex="-1" aria-hidden="true">${pic(e.img,ix(e))}<div class="num">${p.d}<small>${p.m} ${p.y}</small></div></a><div class="cb"><div class="meta m"><span>${esc(e.c)}</span><span>${p.w} · ${esc(e.t)}</span></div><h3><a href="#akce.${e.id}">${esc(e.title)}</a></h3><p class="clamp">${esc(e.desc)}</p><div class="row" style="margin-top:auto">${tkb(e,"Vstupenky")}<a class="b" href="#akce.${e.id}">Více informací <span>→</span></a>${admin?`<a class="b" href="#admin.events.${e.id}">Upravit</a>`:""}</div></div></article>`};
+const calS=()=>`<section class="inv"><div class="g cg fill"><div class="cl"><span class="m">§ 02 — Kalendář akcí</span><div class="ctl"><button class="b" id="pv" aria-label="Předchozí měsíc">←</button><h2 id="mn"></h2><button class="b" id="nx" aria-label="Další měsíc">→</button></div><div id="day" aria-live="polite"></div></div><div class="cwrap"><div id="cal"></div></div></div></section>`;
+function home(){
+  const n=S.news.slice().sort((a,b)=>(b.iso||"").localeCompare(a.iso||""))[0],u=up(),l=S.site.logo;
+  return `<section class="hero"><div class="top m"><span>Vysokomýtská kulturní, o.p.s.</span><span>Litomyšlská 72 — 566 01 Vysoké Mýto</span><span>Program</span></div>
+${S.site.hero?`<img class="hbg" src="${esc(S.site.hero)}" alt="">`:""}<div class="fx" id="fx" role="img" aria-label="M-klub"></div>
+<div class="hrow"><div class="lead"><p>Koncerty, divadlo, kino, kurzy a besedy. Kulturní dům ve Vysokém Mýtě.</p><div class="row"><a class="b p" href="${esc(S.site.tickets||T0)}">Online vstupenky <span>→</span></a><a class="b" href="#program">Program <span>→</span></a></div></div>
+<div class="cnt"><b>${String(u.length).padStart(2,"0")}</b><span class="m">akcí<br>v programu</span></div></div>
+<div class="tk" aria-hidden="true"><div>${S.cats.map(c=>`<span>${esc(c)} ■</span>`).join("").repeat(6)}</div></div></section>
+<section><div class="sh"><div><span class="m">§ 01 — Program</span><h2>Co se chystá</h2></div><div class="ctl"><span class="m" id="pc"></span><button class="b" data-sl="-1" aria-label="Předchozí akce">←</button><button class="b" data-sl="1" aria-label="Další akce">→</button><a class="b p" href="#program">Celý program <span>→</span></a></div></div>
+<div class="trk" id="list">${u.map(evh).join("")||'<p class="m emp">Zatím tu nic není.</p>'}</div></section>
+${calS()}
+${n?`<section class="acc"><div class="g news fill"><div class="art">${pic(n.img,1)}<span class="m">Aktuálně — nové</span></div><div class="tx"><span class="m">${n.iso?P(n.iso).d+". "+P(n.iso).m+" "+P(n.iso).y:"Aktuality"}</span><h2>${esc(n.title)}</h2><p style="max-width:44ch">${esc(n.desc.split("\n")[0])}</p><div class="row"><a class="b p" href="#aktualne.${n.id}">Číst více <span>→</span></a><a class="b" href="#aktualne">Všechny aktuality <span>→</span></a></div></div></div></section>`:""}
+<section class="acc pl"><span class="m">§ 03 — Služba / plakátovací plochy ve městě</span><h2>Výlep plakátů</h2><div class="row"><a class="b p" href="#vylep-plakatu">Ceny a objednávka <span>→</span></a><a class="b" href="#kontakty">Kontakty <span>→</span></a></div></section>`}
+function progv(p){
+  const c=catBy(p[0]);
+  return pgv(["<a href='#program'>Program</a>"+(c?"<span>/</span><span>"+esc(c)+"</span>":"")],esc(c||"Program"),`<div class="chips"><a class="b${c?"":" on"}" href="#program">Vše</a>${S.cats.filter(x=>x!=="Pronájem").map(x=>`<a class="b${c===x?" on":""}" href="#program.${slug(x)}">${esc(x)}</a>`).join("")}</div>
+<div class="ctrl"><label class="m">Hledat<input id="q" type="search" placeholder="Název akce" value="${esc(Q)}"></label><label class="m">Od data<input id="df" type="date" value="${esc(DF)}"></label><label class="m">Řazení<select id="so"><option value="asc"${SO==="asc"?" selected":""}>Od nejbližších</option><option value="desc"${SO==="desc"?" selected":""}>Od nejvzdálenějších</option></select></label></div>
+<p class="m st" id="pn" aria-live="polite"></p><div id="pl" data-c="${esc(c||"")}"></div><div class="row" style="margin-top:1.5rem"><a class="b" href="#kalendar">Kalendář akcí <span>→</span></a></div>`)}
+function plist(){
+  const el=$("#pl");if(!el)return;const c=el.dataset.c,q=norm(Q.trim());
+  let L=srt(S.events).filter(e=>e.iso>=(DF||today)&&(!c||e.c===c)&&(c||e.c!=="Pronájem")&&(!q||norm(e.title+" "+e.desc).includes(q)));
+  if(SO==="desc")L.reverse();
+  $("#pn").textContent=L.length?"Nalezeno akcí: "+L.length:"";
+  el.innerHTML=L.length?`<div class="cards">${L.map(card).join("")}</div>`:'<p class="m">Nic jsme nenašli. Zkuste upravit filtr nebo hledaný výraz.</p>';
+}
+function det(p){
+  const e=S.events.find(x=>x.id===p[0]);if(!e)return pgv(["<a href='#program'>Program</a>"],"Akce nenalezena",'<a class="b" href="#program">Zpět na program <span>→</span></a>');
+  const q=P(e.iso),u=up(),i=u.indexOf(e),pr=u[i-1],nx=u[i+1],rel=u.filter(x=>x.id!==e.id&&x.c===e.c).concat(u.filter(x=>x.id!==e.id&&x.c!==e.c)).slice(0,3);
+  return `<div class="pg">${crumb("<a href='#program'>Program</a>",`<a href="#program.${slug(e.c)}">${esc(e.c)}</a>`)}<div class="det" style="margin-top:1.2rem"><div class="art">${pic(e.img,ix(e))}<div class="num">${q.d}<small>${q.m} ${q.y}</small></div></div>
+<div class="bd2"><div class="meta m"><span>${esc(e.c)}</span><span>${q.w} · ${esc(e.t)}${e.iso===today?' <b class="now">Dnes</b>':''}</span></div><h1>${esc(e.title)}</h1><div class="prose">${rich(e.desc)}</div>
+<dl class="m"><dt>Datum</dt><dd>${q.w} ${+q.d}. ${q.m}. ${q.y}, ${esc(e.t)}</dd><dt>Místo</dt><dd>${esc(e.place)}</dd><dt>Vstupné</dt><dd>${esc(e.price)}</dd><dt>Vstupenky</dt><dd>${avt(e)}</dd></dl>
+<div class="row">${tkb(e)}<button class="b" data-share="${e.id}">Sdílet <span>↗</span></button><a class="b" href="#kalendar" data-cal="${e.iso}">V kalendáři <span>→</span></a>${e.url?`<a class="b" href="${esc(e.url)}">Více info ↗</a>`:""}${admin?`<a class="b" href="#admin.events.${e.id}">Upravit</a>`:""}</div></div></div>
+<div class="row" style="margin-top:2rem;justify-content:space-between">${pr?`<a class="b" href="#akce.${pr.id}">← ${esc(pr.title.slice(0,28))}</a>`:"<span></span>"}${nx?`<a class="b" href="#akce.${nx.id}">${esc(nx.title.slice(0,28))} →</a>`:""}</div>
+${rel.length?`<h2 style="font-size:clamp(1.6rem,4vw,3rem);margin:2.5rem 0 1rem">Další akce</h2><div class="cards">${rel.map(card).join("")}</div>`:""}</div>`}
+function newsv(p){
+  const L=S.news.slice().sort((a,b)=>(b.iso||"").localeCompare(a.iso||"")),d=n=>n.iso?P(n.iso).d+". "+P(n.iso).m+" "+P(n.iso).y:"";
+  if(p[0]){const n=S.news.find(x=>x.id===p[0]);if(n)return `<div class="pg">${crumb("<a href='#aktualne'>Aktuálně</a>")}<h1>${esc(n.title)}</h1><div class="det"><div class="art">${pic(n.img,2)}</div><div class="bd2"><span class="m">${d(n)}</span><div class="prose">${rich(n.desc)}</div>${admin?`<div class="row"><a class="b" href="#admin.news.${n.id}">Upravit</a></div>`:""}</div></div></div>`}
+  return pgv(["<span>Aktuálně</span>"],"Aktuálně",L.length?`<div class="cards">${L.map((n,i)=>`<article class="card"><a class="art" href="#aktualne.${n.id}" tabindex="-1" aria-hidden="true">${pic(n.img,i+1)}</a><div class="cb"><span class="m">${d(n)||"Aktuality"}</span><h3><a href="#aktualne.${n.id}">${esc(n.title)}</a></h3><p class="clamp">${esc(n.desc)}</p><a class="b" href="#aktualne.${n.id}" style="align-self:flex-start;margin-top:auto">Číst více <span>→</span></a></div></article>`).join("")}</div>`:'<p class="m">Zatím žádné aktuality.</p>')}
+const galv=()=>pgv(["<span>Fotogalerie</span>"],"Fotogalerie",S.gallery.length?`<div class="gal">${S.gallery.map((g,i)=>`<button data-lb="${i}" aria-label="Zvětšit fotografii ${i+1}"><img src="${esc(g.src)}" alt="${esc(g.cap||"Fotografie "+(i+1))}" loading="lazy" decoding="async"></button>`).join("")}</div>`:`<p class="m">Zatím tu nejsou žádné fotografie.${admin?" Přidejte je v administraci.":""}</p>${admin?'<div class="row" style="margin-top:1rem"><a class="b p" href="#admin.gallery">Přidat fotky <span>→</span></a></div>':""}`);
+const about=()=>pgv(["<span>O nás</span>"],"O nás",`<div class="prose">${rich(tx("about"))}</div><div class="row" style="margin-top:1.5rem"><a class="b p" href="#kontakty">Kontakty <span>→</span></a><a class="b" href="#prostory">Prostory <span>→</span></a></div>`);
+const CT=[["Ředitel společnosti","Tibor Pagáč",""],["Vedoucí M-klubu, hudební dramaturgie, kino, jarmarky","Ing. Pavel Kopp","739 062 915"],["Programová referentka, kurzy, výlep plakátů","Petra Till","603 194 029"],["Programový referent, pronájem prostor","Josef Stoklasa",""],["Ekonom","Pavel Stránský","739 064 714"],["Divadelní dramaturgie","Martina Skálová, DiS.",""],["Vedoucí údržby","Jaroslav Jindra",""],["Mistr zvuku, technické zajištění akcí","Marcel Svěrák",""],["Vedoucí barů","David Řehák","731 269 447"]];
+const fld=(n,l,t,r,o)=>`<label class="m">${l}${r?" *":""}${t==="sel"?`<select name="${n}"${r?" required":""}>${o.map(x=>`<option>${esc(x)}</option>`).join("")}</select>`:t==="area"?`<textarea name="${n}" rows="5"${r?" required":""}></textarea>`:`<input name="${n}" type="${t}"${r?" required":""} autocomplete="${{name:"name",email:"email",phone:"tel"}[n]||"off"}"${n==="count"?' min="1" inputmode="numeric"':""}>`}</label>`;
+const hp='<label class="hp" aria-hidden="true">Web<input name="web" tabindex="-1" autocomplete="off"></label>';
+const contacts=()=>pgv(["<span>Kontakty</span>"],"Kontakty",`<div class="cols" style="margin-top:0"><div><b>VYSOKOMÝTSKÁ KULTURNÍ, o. p. s.</b><span>Litomyšlská 72, 566 01 Vysoké Mýto</span><span>IČO: 28852150, DIČ: CZ28852150</span><span>Č. ú.: 107-2997920237/0100</span><span>Č. ú. vstupenky: 107-6260510207/0100</span><span>ID datové schránky: 9ryksqp</span><span>Zastoupená ředitelem Tiborem Pagáčem</span></div>
+<div><b>Kancelář</b><a href="tel:+420465420420">+420 465 420 420</a><a href="mailto:${esc(S.site.email||"mklub@mklub.cz")}">${esc(S.site.email||"mklub@mklub.cz")}</a><div class="prose" style="gap:.5rem;margin-top:.5rem"><span class="m">Otevírací doba</span>${rich(tx("hours"))}</div></div>
+<div><b>Kde nás najdete</b><span>Litomyšlská 72, Vysoké Mýto</span><div class="row" style="margin-top:.5rem"><a class="b" href="https://goo.gl/maps/sVgNCXQQx4Q2">Google Mapy ↗</a><a class="b" href="https://mapy.cz/zakladni?q=Litomy%C5%A1sk%C3%A1%2072%20Vysok%C3%A9%20M%C3%BDto">Mapy.cz ↗</a></div></div></div>
+<div class="cols">${CT.map(c=>`<div><span class="m">${c[0]}</span><b>${c[1]}</b>${c[2]?`<a href="tel:+420${c[2].replace(/\s/g,"")}">tel. ${c[2]}</a>`:""}</div>`).join("")}</div>
+<h2 style="font-size:clamp(1.6rem,4vw,3rem);margin:2.5rem 0 1rem">Napište nám</h2><form id="cf" class="fm" novalidate style="max-width:640px">${fld("name","Jméno a příjmení","text",1)}${fld("email","E-mail","email",1)}${fld("phone","Telefon","tel")}${fld("message","Zpráva","area",1)}${hp}<div class="fe" role="alert" aria-live="assertive"></div><div class="row"><button class="b p" type="submit">Připravit zprávu</button></div></form>`);
+const posters=()=>pgv(["<span>Výlep plakátů</span>"],"Výlep plakátů",`<div class="prose">${rich(tx("posters"))}</div><div class="row" style="margin:1.2rem 0"><a class="b p" href="https://forms.gle/wMzyt6DjLYL1qPD1A">Objednávkový formulář ↗</a></div>
+<div class="prose"><h2>Formáty a ceny</h2></div><table class="tbl"><tr><th>Formát</th><th>Rozměr</th><th>do 7 dnů</th><th>do 14 dnů</th><th>do 21 dnů</th><th>nad 21 dnů</th></tr><tr><td>A2</td><td>42 × 59,4 cm</td><td>60 Kč</td><td>100 Kč</td><td>145 Kč</td><td>160 Kč</td></tr><tr><td>A3</td><td>29,7 × 42 cm</td><td>30 Kč</td><td>60 Kč</td><td>80 Kč</td><td>100 Kč</td></tr><tr><td>A4</td><td>21 × 29,7 cm</td><td>20 Kč</td><td>30 Kč</td><td>40 Kč</td><td>60 Kč</td></tr></table><p class="m" style="margin-top:.6rem">Ceny za 1 ks včetně DPH, platné od 1. 10. 2026.</p>`);
+const refv=()=>pgv(["<span>Reference</span>"],"Reference",`<div class="prose" style="max-width:none;gap:1.6rem"><div class="quote">„M-klub je nejlepší klub v republice.“<small>Radim Hladík, Blue Effect, 22. 10. 2011</small></div><div class="quote">„V mejtským M-klubu se hraje senzačně.“<small>Martin Kraus, Krausberry</small></div><div class="quote">„Nejlepší osvětlení na tuzemské klubové scéně.“<small>Jan Nožička, fotograf, 29. 3. 2013</small></div></div>
+<div class="cols"><div><span class="m">Hudba pomáhá</span><b>Benefiční koncerty</b><span>Koncert Chinaski & HP vynesl pro malou Veroniku 130 369 Kč, Dan Bárta s Illustratosphere pomohl dvojčatům částkou 81 150 Kč.</span></div><div><span class="m">2014</span><b>Arakain & Dymytry Tour</b><span>Koncert byl týden předem vyprodaný, na programu bylo 4,5 hodiny hudby.</span></div><div><span class="m">2014</span><b>4. Bubenický festival</b><span>Vyprodáno, v klubu se sešlo zhruba 500 příznivců, hlavními hosty byli Gavin Harrison a Mike Terrana.</span></div><div><span class="m">2012</span><b>Týden hudby</b><span>Třináctý ročník na náměstí s rekordní účastí, na Blue Effect přišlo zhruba dva tisíce lidí.</span></div></div>`);
+function spacesv(p){
+  if(p[0]){const s=S.spaces.find(x=>x.id===p[0]);if(s)return `<div class="pg">${crumb("<a href='#prostory'>Prostory</a>")}<h1>${esc(s.title)}</h1><div class="det"><div class="art">${pic(s.img,3)}</div><div class="bd2"><div class="prose">${rich(s.desc)}</div><dl class="m"><dt>Adresa</dt><dd>${esc(s.place||"—")}</dd><dt>Kapacita</dt><dd>${esc(s.cap||"na dotaz")}</dd><dt>Kontakt</dt><dd>${esc(s.contact||"mklub@mklub.cz")}</dd></dl><div class="row"><a class="b p" href="#poptavka.${s.id}">Poptat tento prostor <span>→</span></a><a class="b" href="#prostory">Všechny prostory <span>→</span></a>${admin?`<a class="b" href="#admin.spaces.${s.id}">Upravit</a>`:""}</div></div></div></div>`}
+  return pgv(["<span>Prostory</span>"],"Prostory a pronájem",`<div class="prose">${rich(tx("rent"))}</div><div class="row" style="margin:1.2rem 0"><a class="b p" href="#poptavka">Poptávka pronájmu <span>→</span></a><a class="b" href="#pronajem">Akce v pronájmu <span>→</span></a></div>
+<div class="cards">${S.spaces.map((s,i)=>`<article class="card"><a class="art" href="#prostory.${s.id}" tabindex="-1" aria-hidden="true">${pic(s.img,i)}</a><div class="cb"><span class="m">${esc(s.place||"")}</span><h3><a href="#prostory.${s.id}">${esc(s.title)}</a></h3><p class="clamp">${esc(s.desc)}</p><div class="row" style="margin-top:auto"><a class="b" href="#prostory.${s.id}">Detail <span>→</span></a><a class="b p" href="#poptavka.${s.id}">Poptat <span>→</span></a></div></div></article>`).join("")}</div>`)}
+function inq(p){
+  const s=S.spaces.find(x=>x.id===p[0]),opts=S.spaces.map(x=>x.title).concat("Jiný prostor");
+  return pgv(["<a href='#prostory'>Prostory</a>"],"Poptávka pronájmu",`<p style="max-width:60ch;margin-bottom:1.2rem">Vyplňte formulář. Povinná pole jsou označena hvězdičkou. Po kontrole se připraví zpráva pro e-mail <b>${esc(S.site.email||"mklub@mklub.cz")}</b>.</p>
+<form id="qf" class="fm" novalidate style="max-width:640px">${fld("name","Jméno a příjmení","text",1)}${fld("email","E-mail","email",1)}${fld("phone","Telefon","tel")}${fld("type","Typ prostoru","sel",1,opts)}${fld("date","Datum plánované akce","date")}${fld("count","Předpokládaný počet účastníků","number")}${fld("message","Zpráva","area",1)}${hp}<div class="fe" role="alert" aria-live="assertive"></div><div class="row"><button class="b p" type="submit">Připravit poptávku</button></div></form>${s?`<script type="text/plain" id="pre">${esc(s.title)}<\/script>`:""}`)}
+const rentv=()=>{const L=up().filter(e=>e.c==="Pronájem");return pgv(["<a href='#prostory'>Prostory</a>","<span>Akce v pronájmu</span>"],"Akce v pronájmu",`<p style="max-width:60ch;margin-bottom:1.5rem">Akce pořádané třetími stranami v prostorách M-klubu.</p>${L.length?`<div class="cards">${L.map(card).join("")}</div>`:'<p class="m">Zatím žádné akce v pronájmu.</p>'}`)};
+
+/* ---------- admin ---------- */
+const AV=[["ok","Vstupenky v prodeji"],["sold","Vyprodáno"],["soon","Prodej připravujeme"]];
+const KD={events:{f:[["title","Název","text"],["c","Kategorie","sel"],["iso","Datum","date"],["t","Čas","time"],["place","Místo","text"],["price","Vstupné","text"],["av","Dostupnost vstupenek","av"],["desc","Popis","area"],["tk","Odkaz na vstupenky této akce","url"],["url","Externí odkaz „Více info“ (nepovinné)","url"]],lab:e=>e.iso+" · "+e.title,v:"akce"},
+news:{f:[["title","Název","text"],["iso","Datum","date"],["desc","Text","area"]],lab:e=>(e.iso?e.iso+" · ":"")+e.title,v:"aktualne"},
+spaces:{f:[["title","Název","text"],["place","Adresa","text"],["cap","Kapacita","text"],["desc","Popis","area"],["contact","Kontakt","text"]],lab:e=>e.title,v:"prostory"}};
+const inp=([n,l,t],v)=>`<label class="m">${l}${t==="sel"?`<select name="${n}">${S.cats.map(c=>`<option${c===v?" selected":""}>${esc(c)}</option>`).join("")}</select>`:t==="av"?`<select name="${n}">${AV.map(([k,x])=>`<option value="${k}"${k===(v||"ok")?" selected":""}>${x}</option>`).join("")}</select>`:t==="area"?`<textarea name="${n}" rows="6">${esc(v)}</textarea>`:`<input name="${n}" type="${t}" value="${esc(v)}"${n==="title"?" required":""}>`}</label>`;
+function adminv(p){
+  if(!admin)return pgv(["<span>Admin</span>"],"Admin","<p>Tato sekce je jen pro správce webu. Otevřete stránku v účtu, který ji může upravovat.</p>");
+  const t=p[0]||"events",tabs=[["events","Akce"],["news","Aktuality"],["gallery","Galerie"],["spaces","Prostory"],["cats","Kategorie"],["texts","Texty"],["web","Nastavení"]];
+  let h=`<div class="pg">${crumb("<span>Admin</span>")}<h1>Správa webu</h1><div class="row tabs">${tabs.map(([k,l])=>`<a class="b${k===t?" on":""}" href="#admin.${k}">${l}</a>`).join("")}</div><div id="dm" class="m st" role="status"></div>`;
+  if(KD[t]){
+    const K=KD[t],items=t==="events"?srt(S.events):t==="news"?S.news.slice().sort((a,b)=>(b.iso||"").localeCompare(a.iso||"")):S.spaces;
+    const sel=p[1]==="new"?{iso:p[2]||(t==="events"?sd||today:today)}:items.find(x=>x.id===p[1]);
+    imgv=sel&&sel.img||"";
+    h+=`<div class="ad"><div><a class="b p" href="#admin.${t}.new" style="margin-bottom:.8rem">＋ Nová položka</a><div class="lst">${items.map(x=>`<a href="#admin.${t}.${x.id}" class="${sel&&sel.id===x.id?"on":""}${t==="events"&&x.iso<today?" past":""}"><span>${esc(K.lab(x))}</span>${t==="events"?`<span class="m">${esc(x.c)}</span>`:""}</a>`).join("")||'<p class="m" style="padding:1rem">Zatím nic.</p>'}</div></div>`;
+    h+=sel?`<form id="fm" class="fm" data-k="${t}" data-id="${sel.id||""}"><h2>${sel.id?"Upravit":"Nová"} položka</h2>${K.f.map(f=>inp(f,sel[f[0]]??(f[0]==="t"?"19:00":f[0]==="c"?"Koncerty":""))).join("")}
+<label class="m">Fotografie / plakát<input type="file" accept="image/*" data-up="img"></label><div><img id="pimg" class="pimg" alt="" ${imgv?`src="${esc(imgv)}"`:"hidden"}><button class="b" type="button" data-rimg ${imgv?"":"hidden"}>Odebrat obrázek</button></div>
+<div class="row"><button class="b p" type="submit">Uložit</button>${sel.id?`<a class="b" href="#${K.v}.${sel.id}">Zobrazit na webu</a>${t==="events"?`<button class="b" type="button" data-dup="${sel.id}">Duplikovat</button>`:""}<button class="b" type="button" data-del="${t}.${sel.id}">Smazat</button>`:""}</div></form>`:'<p class="m">Vyberte položku vlevo nebo přidejte novou.</p>';
+    h+="</div>";
+  }else if(t==="gallery"){
+    h+=`<label class="m">Přidat fotky (lze vybrat víc najednou, zmenší se automaticky)<input type="file" accept="image/*" multiple data-up="gal" style="display:block;margin-top:.4rem"></label><div class="agal">${S.gallery.map(g=>`<div><img src="${esc(g.src)}" alt="" loading="lazy"><button class="b" data-gdel="${g.id}">Smazat</button></div>`).join("")}</div>`;
+  }else if(t==="cats"){
+    h+=`<form id="fc" class="fm" style="max-width:480px"><label class="m">Nová kategorie<input name="c" required></label><button class="b p" type="submit" style="align-self:flex-start">Přidat</button></form><div class="lst" style="margin-top:1rem;max-width:480px">${S.cats.map(c=>`<a><span>${esc(c)}</span><button class="b" data-cdel="${esc(c)}">Smazat</button></a>`).join("")}</div>`;
+  }else if(t==="texts"){
+    h+=`<form id="ft" class="fm" style="max-width:760px">${Object.keys(DEF).map(k=>`<label class="m">${TXN[k]}<textarea name="${k}" rows="${k==="about"||k==="posters"?12:4}">${esc(tx(k))}</textarea></label>`).join("")}<p class="m">Nadpis odstavce začněte znaky „## “. Odstavce oddělte prázdným řádkem.</p><button class="b p" type="submit" style="align-self:flex-start">Uložit texty</button></form>`;
+  }else{
+    h+=`<div class="prose" style="max-width:none;gap:1.6rem"><div><b>Logo (PNG)</b><p class="m">Černý text na průhledném pozadí. Na úvodní straně se roztáhne přes celou šířku, v tmavém režimu se automaticky otočí na světlé.</p><div class="lgprev">${S.site.logo?`<img src="${esc(S.site.logo)}" alt="">`:'<span class="m">žádné logo</span>'}</div><br><input type="file" accept="image/png,image/*" data-up="logo"> ${S.site.logo?'<button class="b" data-rs="logo">Odebrat</button>':""}</div>
+<div><b>Hlavní obrázek na úvodní straně</b><br>${S.site.hero?`<img class="pimg" src="${esc(S.site.hero)}" alt="">`:""}<input type="file" accept="image/*" data-up="hero"> ${S.site.hero?'<button class="b" data-rs="hero">Odebrat</button>':""}</div>
+<form id="fs" class="fm" style="max-width:640px"><label class="m">E-mail pro poptávky a kontakt<input name="email" type="email" value="${esc(S.site.email||"")}" placeholder="mklub@mklub.cz"></label><label class="m">Výchozí odkaz na online prodej vstupenek<input name="tickets" type="url" value="${esc(S.site.tickets||"")}" placeholder="${T0}"></label><label class="m">Google Analytics ID (G-XXXXXXXX)<input name="ga" value="${esc(S.site.ga||"")}" placeholder="G-XXXXXXXXXX"></label><button class="b p" type="submit" style="align-self:flex-start">Uložit nastavení</button></form></div>`;
+  }
+  return h+"</div>";
+}
+const msg=s=>{const m=$("#dm");if(m)m.textContent=s};
+const toast=s=>{const d=document.createElement("div");d.className="ts m";d.textContent=s;d.setAttribute("role","status");document.body.appendChild(d);setTimeout(()=>d.remove(),2600)};
+async function shrink(f,max){
+  if(!/^image\/(jpe?g|png|webp)$/.test(f.type))return f;
+  try{const b=await createImageBitmap(f),r=Math.min(1,max/Math.max(b.width,b.height));if(r===1&&f.size<350000)return f;
+    const c=document.createElement("canvas");c.width=Math.round(b.width*r);c.height=Math.round(b.height*r);c.getContext("2d").drawImage(b,0,0,c.width,c.height);
+    const bl=await new Promise(rs=>c.toBlob(rs,"image/webp",.85));return bl&&bl.size<f.size?new File([bl],f.name.replace(/\.\w+$/,"")+".webp",{type:"image/webp"}):f}catch(_){return f}}
+async function up1(f,raw){const as=await claude.use("assets");if(!as)throw{message:"Nahrávání obrázků zde není dostupné."};const r=await as.upload(raw?f:await shrink(f,1800));return "/_blob/"+r.id}
+const dirty=()=>{dirt=true;bar()};
+const bar=()=>{$("#pbar").hidden=!(admin&&dirt)};
+async function pub(){
+  const b=$("#pu");b.disabled=true;b.textContent="Publikuji…";
+  try{
+    const a=await claude.use("artifact");if(!a)throw{message:"Publikování zde není dostupné."};
+    const c=document.documentElement.cloneNode(true);
+    ["v","lg","flg","lb","fn"].forEach(i=>c.querySelector("#"+i).innerHTML="");
+    ["lb","pbar","al","cc","af"].forEach(i=>c.querySelector("#"+i).hidden=true);
+    c.querySelectorAll("#nv a").forEach(x=>{x.classList.remove("on");x.removeAttribute("aria-current")});
+    c.querySelectorAll(".ts").forEach(n=>n.remove());c.querySelectorAll("script[src]").forEach(n=>n.remove());
+    c.classList.remove("home");c.querySelector("#hd").classList.remove("open");
+    c.querySelector("#data").textContent=JSON.stringify(S).replace(/</g,"\\u003c");
+    await a.publish("<!DOCTYPE html>\n"+c.outerHTML);
+  }catch(x){b.disabled=false;b.textContent="Publikovat změny";alert("Publikování selhalo: "+(x.code||x.message))}
+}
+
+/* ---------- kalendář ---------- */
+function go(iso){sd=iso;cy=+iso.slice(0,4);cm=+iso.slice(5,7)-1}
+function cal(){
+  const first=(new Date(cy,cm,1).getDay()+6)%7,len=new Date(cy,cm+1,0).getDate(),by={};
+  S.events.forEach(e=>by[e.iso]=(by[e.iso]||0)+1);
+  let h=["Po","Út","St","Čt","Pá","So","Ne"].map(d=>`<div class="wd">${d}</div>`).join("")+'<div class="c"></div>'.repeat(first);
+  for(let d=1;d<=len;d++){
+    const iso=`${cy}-${String(cm+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`,n=by[iso]||0;
+    const cl="c"+(n?" on":"")+(iso===today?" td":"")+(iso===sd?" sel":"");
+    h+=n||admin?`<button class="${cl}" data-sd="${iso}" aria-label="${d}. ${MN[cm]}${n?", akcí: "+n:""}">${d}${n?`<em>${"■".repeat(Math.min(n,4))}</em>`:""}</button>`:`<div class="${cl}">${d}</div>`;
+  }
+  $("#cal").innerHTML=h;$("#mn").textContent=MN[cm]+" "+cy;day();
+}
+function day(){
+  const p=P(sd),L=srt(S.events.filter(e=>e.iso===sd));
+  $("#day").innerHTML=`<div class="m">${p.w} ${+p.d}. ${p.m}. ${p.y}</div>`+(L.length?L.map(e=>`<div class="di"><div class="m">${esc(e.t)} · ${esc(e.c)}</div><b>${esc(e.title)}</b><div class="row">${tkb(e,"Vstupenky")}<a class="b" href="#akce.${e.id}">Více informací <span>→</span></a></div></div>`).join(""):'<p class="m">Žádná akce.</p>')+(admin?`<div class="row"><a class="b p" href="#admin.events.new.${sd}">+ Přidat akci</a></div>`:"");
+}
+function pc(){const l=$("#list");if(!l)return;const n=l.children.length,i=Math.min(n,Math.round(l.scrollLeft/(l.clientWidth||1))+1);$("#pc").textContent=n?String(i).padStart(2,"0")+" / "+String(n).padStart(2,"0"):""}
+function fit(){
+  const fx=$("#fx");if(!fx)return;const W=fx.clientWidth,Hc=fx.clientHeight;if(!W||!Hc)return;
+  const lg=S.site.logo;let fs=0,Hb;
+  if(lg){const im=new Image();im.src=lg;if(!im.complete){im.onload=fit;return}Hb=Math.min(W*.97/((im.naturalWidth||4)/(im.naturalHeight||1)),Hc*.6)}
+  else{const m=document.createElement("span");m.className="fxm";m.textContent="M-KLUB";m.style.fontSize="100px";fx.innerHTML="";fx.appendChild(m);const w=m.getBoundingClientRect().width||400;fs=Math.min(W*.97/w*100,Hc*.6/.74);Hb=.74*fs}
+  const N=12,R=Math.max(0,(Hc-Hb)/2);let lo=.3,hi=.93;
+  for(let k=0;k<20;k++){const r=(lo+hi)/2;let s=0;for(let i=1;i<=N;i++)s+=Math.pow(r,i);s*=Hb;s<R*1.5?lo=r:hi=r}
+  const r=lo,one=(i,d)=>{const s=Math.pow(r,i),hh=Hb*s;if(hh<1)return"";const st=`transform:translate(-50%,-50%) scaleY(${(d*s).toFixed(4)})`;
+    return `<div class="fxl o" aria-hidden="true" style="height:${hh.toFixed(2)}px;opacity:${Math.max(.2,1-i*.075).toFixed(2)}">${lg?`<img src="${esc(lg)}" alt="" style="height:${Hb}px;${st}">`:`<span style="font-size:${fs}px;${st}">M-KLUB</span>`}</div>`};
+  let h="";for(let i=N;i>=1;i--)h+=one(i,1);
+  h+=`<div class="fxl" style="height:${Hb}px">${lg?`<img src="${esc(lg)}" alt="M-klub" style="height:${Hb}px">`:`<h1 style="font-size:${fs}px">M-klub</h1>`}</div>`;
+  for(let i=1;i<=N;i++)h+=one(i,-1);
+  fx.innerHTML=h;
+}
+
+/* ---------- router ---------- */
+const V={domu:home,program:progv,akce:det,kalendar:calS,aktualne:newsv,fotogalerie:galv,"o-nas":about,kontakty:contacts,"vylep-plakatu":posters,reference:refv,prostory:spacesv,poptavka:inq,pronajem:rentv,admin:adminv};
+const TT={program:"Program",kalendar:"Kalendář akcí",aktualne:"Aktuálně",fotogalerie:"Fotogalerie","o-nas":"O nás",kontakty:"Kontakty","vylep-plakatu":"Výlep plakátů",reference:"Reference",prostory:"Prostory a pronájem",poptavka:"Poptávka pronájmu",pronajem:"Akce v pronájmu",admin:"Admin"};
+function lg(){const l=S.site.logo,i=l?`<img class="lgi" src="${esc(l)}" alt="M-klub">`:"";$("#lg").innerHTML=l?i:"M-KLUB";$("#flg").innerHTML=l?i:"M-klub<br>Vysoké Mýto";$("#tx").href=S.site.tickets||T0;
+  $("#fn").innerHTML=[["program","Program"],["kalendar","Kalendář"],["aktualne","Aktuálně"],["fotogalerie","Fotogalerie"],["prostory","Prostory"],["o-nas","O nás"],["kontakty","Kontakty"],["vylep-plakatu","Výlep plakátů"],["reference","Reference"]].map(([k,t])=>`<a href="#${k}">${t}</a>`).join("")+S.cats.filter(c=>c!=="Pronájem").map(c=>`<a href="#program.${slug(c)}">${esc(c)}</a>`).join("")}
+function route(){
+  const p=cur.split("."),k=V[p[0]]?p[0]:"domu";
+  document.documentElement.classList.toggle("home",k==="domu");
+  $("#v").innerHTML=V[k](p.slice(1));
+  const ev=k==="akce"&&S.events.find(x=>x.id===p[1]),nw=k==="aktualne"&&S.news.find(x=>x.id===p[1]),c=k==="program"&&catBy(p[1]);
+  document.title=((ev&&ev.title)||(nw&&nw.title)||c||TT[k]||"")+((ev||nw||c||TT[k])?" — ":"")+"M-klub Vysoké Mýto";
+  const md=$("#md");if(md)md.content=ev?(ev.desc||"").slice(0,155):"M-klub Vysoké Mýto — koncerty, divadlo, kino, kurzy a besedy. Program, kalendář akcí a online vstupenky.";
+  document.querySelectorAll("#nv a").forEach(a=>{const h=a.getAttribute("href"),hk=h.slice(1).split(".")[0],on=(hk===k&&(k!=="program"||h==="#"+cur))||(k==="akce"&&h==="#program");a.classList.toggle("on",on);on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  $("#hd").classList.remove("open");$("#mb").setAttribute("aria-expanded","false");lg();bar();$("#af").hidden=!admin||k==="admin";
+  if($("#cal"))cal();const l=$("#list");if(l){l.addEventListener("scroll",pc,{passive:true});pc()}
+  plist();fit();const pre=$("#pre");if(pre){const s=document.querySelector("[name=type]");if(s)[...s.options].forEach(o=>{if(o.value===pre.textContent.trim()||o.text===pre.textContent.trim())s.value=o.value})}
+  window.scrollTo(0,0);
+}
+function nav(h){cur=h||"domu";try{history.pushState(null,"","#"+cur)}catch(_){}route()}
+addEventListener("hashchange",()=>{cur=(location.hash||"").slice(1)||"domu";route()});
+addEventListener("resize",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+const nx0=up()[0];go(nx0?nx0.iso:today);
+
+/* ---------- lightbox ---------- */
+function lbShow(i){const n=S.gallery.length;if(!n)return;li=(i+n)%n;const g=S.gallery[li];
+  $("#lb").innerHTML=`<button class="lbx b" data-lbc aria-label="Zavřít">✕</button><button class="lbn l b" data-lbn="-1" aria-label="Předchozí fotografie">←</button><img src="${esc(g.src)}" alt="${esc(g.cap||"Fotografie "+(li+1))}"><button class="lbn r b" data-lbn="1" aria-label="Další fotografie">→</button><span class="m lbc">${li+1} / ${n}</span>`;
+  $("#lb").hidden=false;$("#lb").querySelector("[data-lbc]").focus()}
+const lbClose=()=>{$("#lb").hidden=true;$("#lb").innerHTML=""};
+addEventListener("keydown",e=>{if($("#lb").hidden)return;if(e.key==="Escape")lbClose();else if(e.key==="ArrowLeft")lbShow(li-1);else if(e.key==="ArrowRight")lbShow(li+1)});
+
+/* ---------- cookies & analytics ---------- */
+const CC=()=>{try{return localStorage.getItem("mk_cc")}catch(_){return null}};
+const setCC=v=>{try{v?localStorage.setItem("mk_cc",v):localStorage.removeItem("mk_cc")}catch(_){}};
+function analytics(){const id=S.site.ga;if(!id||!/^G-[A-Z0-9]+$/i.test(id)||CC()!=="all"||window.gtag)return;
+  const s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+id;document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",id,{anonymize_ip:true})}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const x=e.target;
+  if(x.closest("#lb")){if(x.id==="lb"||x.closest("[data-lbc]"))lbClose();else{const n=x.closest("[data-lbn]");if(n)lbShow(li+ +n.dataset.lbn)}return}
+  const a=x.closest("a[href^='#']");
+  if(a){e.preventDefault();const c=a.dataset.cal;if(c)go(c);nav(a.getAttribute("href").slice(1));return}
+  const t=x.closest("[data-sd],[data-sl],[data-lb],[data-del],[data-rimg],[data-gdel],[data-rs],[data-cdel],[data-dup],[data-share],[data-cc],[data-copy],#mb,#pv,#nx,#pu,#sk");if(!t)return;
+  const d=t.dataset;
+  if(d.sd){sd=d.sd;cal()}
+  else if(d.sl){const l=$("#list");l.scrollBy({left:l.clientWidth*d.sl,behavior:"smooth"})}
+  else if(d.lb!==undefined)lbShow(+d.lb);
+  else if(d.del){if(d.s!=="1"){d.s="1";t.textContent="Opravdu smazat?";return}const[k,id]=d.del.split(".");S[k]=S[k].filter(y=>y.id!==id);dirty();nav("admin."+k)}
+  else if(d.rimg!==undefined){imgv="";$("#pimg").hidden=true;t.hidden=true}
+  else if(d.gdel){S.gallery=S.gallery.filter(g=>g.id!==d.gdel);dirty();route()}
+  else if(d.rs){S.site[d.rs]="";dirty();route()}
+  else if(d.cdel){if(S.events.some(y=>y.c===d.cdel)){msg("Kategorie se používá u akcí, nejdřív je přesuňte.");return}S.cats=S.cats.filter(c=>c!==d.cdel);dirty();route()}
+  else if(d.dup){const s=S.events.find(y=>y.id===d.dup),o={...s,id:"e"+Date.now(),title:s.title+" (kopie)"};S.events.push(o);dirty();nav("admin.events."+o.id)}
+  else if(d.share){const ev=S.events.find(y=>y.id===d.share),u=location.href.split("#")[0]+"#akce."+d.share;
+    if(navigator.share)navigator.share({title:ev.title,url:u}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(u).then(()=>toast("Odkaz zkopírován"),()=>toast(u));else toast(u)}
+  else if(d.cc){if(d.cc==="reset"){setCC(null);$("#cc").hidden=false}else{setCC(d.cc);$("#cc").hidden=true;analytics()}}
+  else if(d.copy){const b=$("#cpy");if(navigator.clipboard)navigator.clipboard.writeText(b.textContent).then(()=>toast("Text zkopírován"),()=>toast("Kopírování se nezdařilo"))}
+  else if(t.id==="sk"){$("#v").focus()}
+  else if(t.id==="mb"){const o=$("#hd").classList.toggle("open");t.setAttribute("aria-expanded",o)}
+  else if(t.id==="pv"){cm--;if(cm<0){cm=11;cy--}cal()}
+  else if(t.id==="nx"){cm++;if(cm>11){cm=0;cy++}cal()}
+  else if(t.id==="pu")pub();
+});
+document.addEventListener("input",e=>{const t=e.target;if(t.id==="q")Q=t.value;else if(t.id==="df")DF=t.value;else if(t.id==="so")SO=t.value;else return;plist()});
+const EM=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+document.addEventListener("submit",e=>{
+  const f=e.target,id=f.id;e.preventDefault();
+  if(id==="fm"){
+    const k=f.dataset.k,o={id:f.dataset.id||k[0]+Date.now(),img:imgv};KD[k].f.forEach(([n])=>o[n]=f.elements[n].value.trim());
+    if(k==="events"&&!o.iso){msg("Vyplňte datum akce.");return}
+    S[k]=S[k].filter(y=>y.id!==o.id).concat(o);if(k==="events")go(o.iso||today);dirty();nav("admin."+k+"."+o.id);msg("Uloženo v náhledu. Návštěvníkům se změny zobrazí po kliknutí na „Publikovat změny“.");
+  }else if(id==="fc"){const c=f.elements.c.value.trim();if(!c||S.cats.some(x=>slug(x)===slug(c))){msg("Kategorie je prázdná nebo už existuje.");return}S.cats.splice(Math.max(0,S.cats.indexOf("Pronájem")),0,c);dirty();route();msg("Kategorie přidána.")}
+  else if(id==="ft"){Object.keys(DEF).forEach(k=>{const v=f.elements[k].value.trim();if(v&&v!==DEF[k])S.texts[k]=v;else delete S.texts[k]});dirty();msg("Texty uloženy v náhledu.")}
+  else if(id==="fs"){["email","tickets","ga"].forEach(k=>S.site[k]=f.elements[k].value.trim());dirty();msg("Nastavení uloženo v náhledu.")}
+  else if(id==="qf"||id==="cf"){
+    const d=Object.fromEntries(new FormData(f)),err=$(".fe",f);
+    if(d.web||Date.now()-t0<2500){err.textContent="Odeslání se nepodařilo. Zkuste to prosím znovu.";return}
+    const bad=[];if(!d.name.trim())bad.push("jméno");if(!EM.test(d.email.trim()))bad.push("platný e-mail");if(id==="qf"&&!d.type)bad.push("typ prostoru");if(!d.message.trim())bad.push("zprávu");
+    if(d.count&&+d.count<1)bad.push("počet účastníků (číslo od 1)");
+    if(bad.length){err.textContent="Vyplňte prosím: "+bad.join(", ")+".";return}
+    const q=id==="qf",L=[["Jméno",d.name],["E-mail",d.email],["Telefon",d.phone],q&&["Typ prostoru",d.type],q&&["Datum akce",d.date],q&&["Počet účastníků",d.count],["Zpráva",d.message]].filter(Boolean).filter(r=>r[1]).map(r=>r[0]+": "+r[1].trim()).join("\n");
+    const to=S.site.email||"mklub@mklub.cz",sub=q?"Poptávka prostoru — "+d.type:"Zpráva z webu M-klub";
+    f.outerHTML=`<div class="fm ok" role="status" style="max-width:640px"><b>Zpráva je připravená, ale ještě není odeslaná.</b><p>Web nemá vlastní server pro odesílání e-mailů. Klikněte na tlačítko, otevře se váš e-mailový program s vyplněnou zprávou pro <b>${esc(to)}</b> a stačí ji odeslat.</p><div class="row"><a class="b p" target="_self" href="mailto:${esc(to)}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(L)}">Otevřít e-mail <span>→</span></a><button class="b" type="button" data-copy>Zkopírovat text</button></div><pre id="cpy" hidden>${esc(L)}</pre></div>`;
+  }
+});
+document.addEventListener("paste",e=>{if(!admin)return;const fl=[...(e.clipboardData&&e.clipboardData.files||[])].filter(f=>/^image\//.test(f.type));if(!fl.length)return;const p=cur.split(".");if(p[0]!=="admin")return;const w=p[1]==="web"?"logo":p[1]==="gallery"?"gal":$("#fm")?"img":null;if(!w)return;e.preventDefault();doUp(w,fl)});
+document.addEventListener("change",e=>{const t=e.target,w=t.dataset&&t.dataset.up;if(w&&t.files.length)doUp(w,[...t.files])});
+async function doUp(w,fl){msg("Nahrávám a optimalizuji…");
+  try{for(const f of fl){const u=await up1(f,w==="logo");
+    if(w==="img"){imgv=u;const i=$("#pimg");i.src=u;i.hidden=false;const r=document.querySelector("[data-rimg]");if(r)r.hidden=false}
+    else if(w==="gal")S.gallery.push({id:"g"+Date.now()+Math.random().toString(36).slice(2,5),src:u});
+    else S.site[w]=u}
+    if(w!=="img"){dirty();route()}msg("Obrázek nahrán. Nezapomeňte uložit položku a publikovat.")}
+  catch(x){msg("Nahrání selhalo: "+(x.code||x.message))}
+}
+$("#cc").hidden=CC()!==null;analytics();
+route();
+(async()=>{try{const u=await claude.use("user");admin=u?await u.canEdit():false}catch(_){}
+  if(admin){$("#al").hidden=false;route()}})();
+</script>
+</body>
+</html>
