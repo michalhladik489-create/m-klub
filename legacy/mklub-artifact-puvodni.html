@@ -285,6 +285,19 @@ h2{font-size:clamp(2.4rem,min(9vw,13svh),8rem)}
 .fg .pt a::after{content:"↗";font:500 .8rem "JetBrains Mono",monospace;transition:transform .3s}
 .fg .pt a:hover{background:var(--fg);color:var(--bg)}.fg .pt a:hover::after{transform:translate(3px,-3px)}
 @media(max-width:560px){.fg .pt{grid-template-columns:repeat(2,1fr)}}
+
+/* ---- opravy: akcenty písmen nenarážejí do textu nad nadpisem, prázdné náhledy nejsou bílé ---- */
+.pg>h1{line-height:.95;margin-top:clamp(1.6rem,4vw,3rem)}
+.det h1{line-height:1}
+h2{line-height:.95;padding-top:.12em}
+.pl h2{line-height:.95;padding-top:.14em}
+.pl{gap:clamp(1rem,2.5vw,2rem)}
+.news h2,.cl h2{line-height:1}
+:root{--ph:color-mix(in srgb,var(--acc) 28%,#0a0a0a)}
+.p2{background:conic-gradient(#0a0a0a 25%,var(--acc) 0 50%,#0a0a0a 0 75%,var(--acc) 0) 0 0/64px 64px}
+.p4{background:repeating-linear-gradient(135deg,var(--acc) 0 3px,transparent 3px 16px),var(--ph)}
+.p5{background:linear-gradient(#0a0a0a,#0a0a0a) 14% 14%/56% 56% no-repeat,linear-gradient(var(--acc),var(--acc)) 40% 40%/56% 56% no-repeat,var(--ph)}
+.card .art:not(.has){aspect-ratio:16/10}
 </style>
 </head>
 <body>
